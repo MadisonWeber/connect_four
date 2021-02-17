@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { useContext } from 'react';
+import Board from './components/Board'
+import Message from './components/Message'
+import SignIn from './components/SignIn'
+import ShowTurn from './components/ShowTurn'
+import './css/App.css';
+import { GameContext } from "./GlobalState/GameState"
+
 
 function App() {
+
+  const { state, dispatch } = useContext(GameContext)
+  const { gameState } = state
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <h1 className = 'title'>Connect Four</h1>
+        <p className = 'instructions'>Two players! Get four colours in a row and you win!</p>
+        <Board />
+        <Message />
+        {gameState === 'signin' && <SignIn /> }
+        {gameState === 'playing' && <ShowTurn />}
     </div>
   );
 }

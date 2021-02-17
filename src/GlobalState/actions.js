@@ -1,0 +1,8 @@
+const ACTIONS = {
+    UPDATE_MESSAGE : 'UPDATE_MESSAGE',
+    UPDATE_BOARD : "UPDATE_BOARD",
+    SIGNIN : 'SIGNIN'
+}
+
+
+export default ACTIONS

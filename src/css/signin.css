@@ -1,0 +1,55 @@
+.signin{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(20, 20, 20, .9);
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signin form{
+    background-color: white;
+    min-height: 400px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding:20px;
+}
+
+
+.form__container{
+    display: flex;
+    flex-direction: column;
+}
+
+.signin h4{
+    font-size: 1.4rem;
+}
+
+.signin input{
+    min-height: 2rem;
+    outline: none;
+    padding: 5px 10px;
+    border: none;
+    border-bottom: 2px solid var(--lightblue);
+    font-size: 1.1rem;
+    font-weight: 100;
+   
+}
+
+.signin label{
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.playbtn{
+    font-size: 1.8rem;
+    padding: 8px 24px;
+    background-color: var(--color-five);
+    border: none;
+    align-self: center;
+    color: white;
+}

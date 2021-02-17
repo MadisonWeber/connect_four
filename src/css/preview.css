@@ -1,0 +1,33 @@
+.preview-row{
+    height: 80px;
+    background:transparent;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: absolute;
+    top: -80px;
+    width: 100%;
+    left: 0;
+    padding: 0 20px;
+}
+
+.preview-space{
+    background-color: transparent;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+}
+
+.preview-space.activeone{
+    background-color: var(--yellow);
+    /* border: 1px solid black; */
+    transition: 120ms ease-in;
+}
+
+
+.preview-space.activetwo{
+    background-color: var(--red);
+    /* border: 1px solid black; */
+    transition: 120ms ease-in;
+}

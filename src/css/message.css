@@ -1,0 +1,16 @@
+.message{
+    height: 80px;
+    width: 480px;
+    background-color: rgba(17, 16, 16, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: absolute;
+    bottom:0;
+    left: 0;
+}
+
+.message span{
+    color: var(--green);
+}

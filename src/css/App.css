@@ -1,0 +1,13 @@
+.title{
+    margin-top: 1rem;
+    margin-left: 2rem;
+    color: white;
+    font-size: 3rem;
+}
+
+.instructions{
+    margin-top: 1rem;
+    margin-left: 2rem;
+    color: var(--yellow);
+    font-size: 1.2rem;
+}
