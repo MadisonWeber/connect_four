@@ -4,18 +4,21 @@ import reducer from './reducer'
 
 export const GameContext = createContext()
 
+
+
 const GameContextProvider = ({children}) => {
 
-    const initalState = { 
+    const initialState = { 
         message : '', 
         board : [[0,0,0,0,0,0,0], [0,0,0,0,0,0,0], [0,0,0,0,0,0,0], [0,0,0,0,0,0,0], [0,0,0,0,0,0,0], [0,0,0,0,0,0,0]],
         turn : 1,
         gameState : 'signin', 
         players : [],
-        numMoves : 0
+        numMoves : 0, 
+        winner : ''
     }
 
-    const [state, dispatch ] = useReducer(reducer, initalState)
+    const [state, dispatch ] = useReducer(reducer, initialState)
 
     return (
         <GameContext.Provider value = {{state, dispatch}}>

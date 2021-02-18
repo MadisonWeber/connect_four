@@ -2,38 +2,44 @@ import React, { useState, useEffect, useContext } from 'react'
 import "../css/preview.css"
 import { GameContext } from '../GlobalState/GameState'
 import ACTIONS from '../GlobalState/actions'
-import findBoardIndex from '../utils/findBoardIndex'
+import findRowIndex from '../utils/findRowIndex'
+import evaluateBoard from '../utils/evaluateBoard'
 
 const Preview = () => {
 
     const [ previewPosition, setPreviewPosition ] = useState(3)
+    const [ currentRowIndex, setCurrentRowIndex ] = useState(0)
+    const [ currentColIndex, setCurrentColIndex ] = useState(0)
 
     const { state, dispatch }  = useContext(GameContext)
-    const { board, turn } = state
+    const { board, turn, numMoves, players } = state
 
 
     useEffect(()=> {
         const checkKeyPress = (e)=> {
-           
-            const { keyCode } = e
+            const { keyCode, target } = e
             //left key === 37
             if(keyCode === 37 && previewPosition !== 0)setPreviewPosition(p => p - 1 )
             //right key === 39
             if(keyCode === 39 && previewPosition !== 6)setPreviewPosition( p => p + 1)
             //space bar === 32
-            if(keyCode === 32 && e.target === document.body){
+            if(keyCode === 32 && target === document.body){
                 e.preventDefault()
 
-                const indexOne = findBoardIndex(previewPosition, board)
-                console.log('indexone is ', indexOne)
+                const ind = findRowIndex(previewPosition, board)
                 
-                if(!indexOne && indexOne !== 0){
+                if(!ind && ind !== 0){
+                    setTimeout(()=>{
+                        dispatch({ type : ACTIONS.UPDATE_MESSAGE, payload : ''})
+                    }, 2000)
                     return dispatch({ type : ACTIONS.UPDATE_MESSAGE, payload : 'Cannot add to full column'})
                 }
-
-                dispatch({type : ACTIONS.UPDATE_BOARD, payload : {indexOne : indexOne, indexTwo : previewPosition, playerNum : turn}})
-
-
+                
+                dispatch({type : ACTIONS.UPDATE_BOARD, payload : {indexOne : ind, indexTwo : previewPosition, playerNum : turn}})
+                
+                
+                setCurrentRowIndex(ind)
+                setCurrentColIndex(previewPosition)
                 setPreviewPosition(3)
             } 
 
@@ -44,7 +50,30 @@ const Preview = () => {
 
         return ()=> document.removeEventListener('keydown', checkKeyPress)
 
-    }, [previewPosition])
+    }, [previewPosition, board, turn, dispatch])
+
+
+
+    useEffect(()=> {
+        if(numMoves < 7) return 
+        const checkWinner = () => {
+            const winner = evaluateBoard(board, currentColIndex, currentRowIndex)
+            if(winner){
+                let gameWinner = players[winner - 1].name
+                dispatch({type : ACTIONS.WINNER, payload : {winner : gameWinner}})
+            } 
+        }   
+
+        checkWinner()
+    }, [board, currentRowIndex, numMoves, currentColIndex, players, dispatch])
+
+
+
+    useEffect(() => {
+        if(numMoves === 42){
+            dispatch({ type : ACTIONS.TIE})
+        }
+    }, [numMoves, dispatch])
 
 
 

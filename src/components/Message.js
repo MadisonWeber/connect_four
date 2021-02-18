@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import { GameContext } from '../GlobalState/GameState'
-import ACTIONS from '../GlobalState/actions'
 import "../css/message.css"
 
 const Message = () => {

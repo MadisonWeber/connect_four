@@ -2,12 +2,37 @@
     position: absolute;
     top: 0;
     right: 0;
-    width: 400px;
-    height: 80px;
+    max-width: 400px;
+    min-width: 340px;
+    min-height: 180px;
     background-color: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
 }
+
+.stats{
+    text-align: center;
+    font-size: 14px;
+    width: 120px;
+    
+}
+
+
+.stats div, .stats p{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.player__turn{
+    display: flex;
+    margin-bottom: 10px;
+    align-items: center;
+}
+

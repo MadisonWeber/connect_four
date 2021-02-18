@@ -6,7 +6,7 @@ import ACTIONS from '../GlobalState/actions'
 const SignIn = () => {
 
 
-    const {state, dispatch} = useContext(GameContext)
+    const { dispatch } = useContext(GameContext)
 
 
 
@@ -16,7 +16,7 @@ const SignIn = () => {
 
     const handleSubmit = e => {
         e.preventDefault()
-        dispatch({type : ACTIONS.SIGNIN, payload : [playerOne, playerTwo]})
+        dispatch({type : ACTIONS.SIGNIN, payload : [{ name : playerOne, wins : 0}, { name : playerTwo , wins : 0}]})
     }
  
     return (
@@ -25,14 +25,14 @@ const SignIn = () => {
                 <h4>Enter Player Names to Play</h4>
                 <div className = 'form__container'>
                     <label htmlFor= 'playerOne'>Player One Name</label>
-                    <input type="text" name = 'playerOne' value = {playerOne} onChange = {e => setPlayerOne(e.currentTarget.value)}/>
+                    <input type="text" name = 'playerOne' value = {playerOne}  onChange = {e => setPlayerOne(e.currentTarget.value)}/>
                 </div>
                 <div className = 'form__container'>
                     <label htmlFor= 'playerTwo'>Player Two Name</label>
-                    <input type="text" name = 'playerTwo' value = {playerTwo} onChange = {e => setPlayerTwo(e.currentTarget.value)}/>
+                    <input type="text" name = 'playerTwo' value = {playerTwo}  onChange = {e => setPlayerTwo(e.currentTarget.value)}/>
                 </div>
 
-                <button className = 'playbtn' type = 'submit'>Lets Play</button>
+                <button className = 'playbtn' type = 'submit' disabled = {playerOne.length <= 2 || playerTwo.length <= 2}>Lets Play</button>
             </form>
         </div>
     )

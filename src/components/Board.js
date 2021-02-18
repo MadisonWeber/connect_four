@@ -1,65 +1,29 @@
-import React from 'react'
-import "../css/board.css"
+import { useContext } from 'react'
 import Preview from '../components/Preview'
+import Space from './Space'
+import { GameContext } from '../GlobalState/GameState'
+import "../css/board.css"
 
 const Board = () => {
+
+    const { state } = useContext(GameContext)
+    const { board } = state 
+    
+
+
     return (
         <div className = 'board'>
             <Preview />
-            <div className="row">
-                <div className="space"></div>
-                <div className="space"></div>
-                <div className="space"></div>
-                <div className="space"></div>
-                <div className="space"></div>
-                <div className="space"></div>
-                <div className="space"></div>
-            </div>
-            <div className="row">
-                <div className="space"></div>
-                <div className="space"></div>
-                <div className="space"></div>
-                <div className="space"></div>
-                <div className="space"></div>
-                <div className="space"></div>
-                <div className="space"></div>
-            </div>
-            <div className="row">
-                <div className="space"></div>
-                <div className="space"></div>
-                <div className="space"></div>
-                <div className="space"></div>
-                <div className="space"></div>
-                <div className="space"></div>
-                <div className="space"></div>
-            </div>
-            <div className="row">
-                <div className="space"></div>
-                <div className="space"></div>
-                <div className="space"></div>
-                <div className="space"></div>
-                <div className="space"></div>
-                <div className="space"></div>
-                <div className="space"></div>
-            </div>
-            <div className="row">
-                <div className="space"></div>
-                <div className="space"></div>
-                <div className="space"></div>
-                <div className="space"></div>
-                <div className="space"></div>
-                <div className="space"></div>
-                <div className="space"></div>
-            </div>
-            <div className="row">
-                <div className="space"></div>
-                <div className="space"></div>
-                <div className="space"></div>
-                <div className="space"></div>
-                <div className="space"></div>
-                <div className="space"></div>
-                <div className="space"></div>
-            </div>
+            {
+                board.map( (row, index) => (
+                    <div className="row" key = {index}>
+                        {row.map((space, index) => (
+                            <Space key = {index} num = {space}/>
+                        ))}
+                    </div>
+                 ))
+            }
+
         </div>
     )
 }
