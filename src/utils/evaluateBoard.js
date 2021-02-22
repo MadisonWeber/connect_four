@@ -11,6 +11,12 @@ const evaluateBoard = (board, columnIndex, rowIndex) => {
 
     for(let j = 0; j < board[rowIndex].length ; j++){
 
+        if(board[rowIndex][j] === 0){
+            consecutiveOne = 0
+            consecutiveTwo = 0
+            continue
+        }
+
         if(board[rowIndex][j] === 1 && last === 1){
             consecutiveOne += 1
         }else if(board[rowIndex][j] === 2 && last === 2){
@@ -33,6 +39,7 @@ const evaluateBoard = (board, columnIndex, rowIndex) => {
             break
         }
 
+        
     }
 
     // Check if Anyone had won Vertically
